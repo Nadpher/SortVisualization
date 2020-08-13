@@ -7,10 +7,10 @@
 #include <algorithm>
 #include <string>
 
-SortVis::Engine::Engine(Coord pWindowSize, Coord pAmountAndMax)
+SortVis::Engine::Engine(Coord pWindowSize, int pMaxNumber)
 	: m_WindowSize(pWindowSize)
 {
-	GenerateRandom(pAmountAndMax);
+	GenerateRandom(pMaxNumber);
 
 	CalculateNumbers();
 
@@ -23,10 +23,10 @@ SortVis::Engine::Engine(Coord pWindowSize, Coord pAmountAndMax)
 	InitRenderer();	
 }
 
-SortVis::Engine::Engine(Coord pWindowSize, Coord pAmountAndMax, const char* pWindowTitle)
+SortVis::Engine::Engine(Coord pWindowSize, int pMaxNumber, const char* pWindowTitle)
 	: m_WindowSize(pWindowSize)
 {
-	GenerateRandom(pAmountAndMax);
+	GenerateRandom(pMaxNumber);
 
 	CalculateNumbers();
 
@@ -97,7 +97,14 @@ void SortVis::Engine::Run()
 	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
 	Draw();
 
-	BubbleSort();
+	while (m_Running)
+	{
+		HandleEvents();
+		if (!m_Sorted)
+		{
+			BubbleSort();
+		}
+	}
 }
 
 void SortVis::Engine::BubbleSort()
@@ -120,6 +127,8 @@ void SortVis::Engine::BubbleSort()
 
 		Draw();
 	}
+	
+	m_Sorted = true;
 }
 
 void SortVis::Engine::Draw()
@@ -163,12 +172,12 @@ void SortVis::Engine::HandleEvents()
 	}
 }
 
-void SortVis::Engine::GenerateRandom(Coord pAmountAndMax)
+void SortVis::Engine::GenerateRandom(int pMaxNumber)
 {
 	std::mt19937 Seed(std::random_device{}());
-	std::uniform_int_distribution<int> Distribution(0, pAmountAndMax.Y);
+	std::uniform_int_distribution<int> Distribution(0, pMaxNumber);
 
-	for (int i = 0; i < pAmountAndMax.X; ++i)
+	for (int i = 0; i < pMaxNumber; ++i)
 	{
 		int Number = Distribution(Seed);
 		while (std::count(m_Numbers.begin(), m_Numbers.end(), Number) != 0)
@@ -177,7 +186,7 @@ void SortVis::Engine::GenerateRandom(Coord pAmountAndMax)
 		}
 		m_Numbers.push_back(Number);
 	}
-	std::cout << "Generated random number values.\n";
+	std::cout << "Generated random number sequence.\n";
 }
 
 void SortVis::Engine::CalculateNumbers()

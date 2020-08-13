@@ -12,10 +12,10 @@ namespace SortVis
 	public:
 
 		Engine() = delete;
-		Engine(Coord pWindowSize, Coord pAmountAndMax);
+		Engine(Coord pWindowSize, int pMaxNumber);
 		Engine(Coord pWindowSize, const char* pPathToNumbersFile);
 		Engine(Coord pWindowSize, const char* pPathToNumbersFile, const char* pWindowTitle);
-		Engine(Coord pWindowSize, Coord pAmountAndMax, const char* pWindowTitle);
+		Engine(Coord pWindowSize, int pMaxNumber, const char* pWindowTitle);
 
 		~Engine();
 
@@ -23,13 +23,15 @@ namespace SortVis
 
 	private:
 
+		const Coord m_WindowSize;
 		SDL_Window* m_Window = nullptr;
 		SDL_Renderer* m_Renderer = nullptr;
-		const Coord m_WindowSize;
+		
 		std::vector<int> m_Numbers = { };
 		int m_ColumnWidth = 0;
 		int m_MaxValue = 0;
 		bool m_Running = true;
+		bool m_Sorted = false;
 
 		void InitWindow(Coord pWindowSize, const char* pWindowTitle);
 		void InitRenderer();
@@ -41,6 +43,6 @@ namespace SortVis
 		void Draw();
 		void DrawColumns();
 
-		void GenerateRandom(Coord pAmountAndMax);		
+		void GenerateRandom(int pMaxNumber);		
 	};
 }
