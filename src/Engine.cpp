@@ -168,6 +168,9 @@ void SortVis::Engine::HandleEvents()
 		case SDL_QUIT:
 			m_Running = false;
 			break;
+
+		default:
+			break;
 		}
 	}
 }
