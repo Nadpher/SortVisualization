@@ -95,16 +95,13 @@ void SortVis::Engine::Run()
 {
 	// Sets render draw color to black
 	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+	Draw();
 
-	if (m_Running)
-	{
-		BubbleSort();
-	}
+	BubbleSort();
 }
 
 void SortVis::Engine::BubbleSort()
-{
-	Draw();
+{	
 	for (int i = 0, Size = m_Numbers.size(); i < Size - 1; ++i)
 	{
 		for (int j = 0; j < Size - i - 1; ++j)
