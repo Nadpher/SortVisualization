@@ -175,7 +175,7 @@ void SortVis::Engine::HandleEvents()
 void SortVis::Engine::GenerateRandom(int pMaxNumber)
 {
 	std::mt19937 Seed(std::random_device{}());
-	std::uniform_int_distribution<int> Distribution(0, pMaxNumber);
+	std::uniform_int_distribution<int> Distribution(1, pMaxNumber);
 
 	for (int i = 0; i < pMaxNumber; ++i)
 	{
