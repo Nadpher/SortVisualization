@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include "Coord.h"
 #include <SDL.h>
@@ -12,37 +13,39 @@ namespace SortVis
 	public:
 
 		Engine() = delete;
-		Engine(Coord pWindowSize, int pMaxNumber);
-		Engine(Coord pWindowSize, const char* pPathToNumbersFile);
-		Engine(Coord pWindowSize, const char* pPathToNumbersFile, const char* pWindowTitle);
-		Engine(Coord pWindowSize, int pMaxNumber, const char* pWindowTitle);
+		Engine(Coord windowSize, int maxNumber);
+		Engine(Coord windowSize, const char* pathToNumbersFile);
+		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle);
+		Engine(Coord windowSize, int maxNumber, const char* windowTitle);
 
 		~Engine();
 
-		void Run();
+		void run();
 
 	private:
 
-		const Coord m_WindowSize;
-		SDL_Window* m_Window = nullptr;
-		SDL_Renderer* m_Renderer = nullptr;
+		const Coord windowSize;
+		SDL_Window* window = nullptr;
+		SDL_Renderer* renderer = nullptr;
 		
-		std::vector<int> m_Numbers = { };
-		int m_ColumnWidth = 0;
-		int m_MaxValue = 0;
-		bool m_Running = true;
-		bool m_Sorted = false;
+		std::vector<int> numbers = { };
+		int columnWidth = 0;
+		int maxValue = 0;
+		bool running = true;
+		bool sorted = false;
 
-		void InitWindow(Coord pWindowSize, const char* pWindowTitle);
-		void InitRenderer();
-		void CalculateNumbers();		
-		void LoadFile(const char* pPathToNumbersFile);
+		void initWindow(Coord windowSize, const char* windowTitle);
+		void initRenderer();
+		void calculateNumbers();		
+		void loadFile(const char* pathToNumbersFile);
 		
-		void HandleEvents();
-		void BubbleSort();
-		void Draw();
-		void DrawColumns();
+		void handleEvents();
+		void bubbleSort();
+		void draw();
+		void drawColumns();
 
-		void GenerateRandom(int pMaxNumber);		
+		std::vector<int> generateRandom(int maxNumber);		
 	};
 }
+
+#endif // ENGINE_H
