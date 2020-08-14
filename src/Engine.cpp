@@ -99,13 +99,13 @@ void SortVis::Engine::run()
 		handleEvents();
 		if (!std::is_sorted(numbers.begin(), numbers.end()))
 		{
-			bubbleSort();
+			stepBubbleSort();
 		}
 		draw();
 	}
 }
 
-void SortVis::Engine::bubbleSort()
+void SortVis::Engine::stepBubbleSort()
 {	
 	static int i = 0;
 	static int size = numbers.size();

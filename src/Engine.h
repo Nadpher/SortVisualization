@@ -40,7 +40,7 @@ namespace SortVis
 		void loadFile(const char* pathToNumbersFile);
 		
 		void handleEvents();
-		void bubbleSort();
+		void stepBubbleSort();
 		void draw();
 		void drawColumns();
 
