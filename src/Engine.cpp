@@ -97,35 +97,31 @@ void SortVis::Engine::run()
 	while (running)
 	{
 		handleEvents();
-		if (!sorted)
+		if (!std::is_sorted(numbers.begin(), numbers.end()))
 		{
 			bubbleSort();
 		}
+		draw();
 	}
 }
 
 void SortVis::Engine::bubbleSort()
 {	
-	for (int i = 0, Size = numbers.size(); i < Size - 1; ++i)
-	{
-		for (int j = 0; j < Size - i - 1; ++j)
+	static int i = 0;
+	static int size = numbers.size();
+	for (int j = 0; j < size - i - 1; ++j)
+	{			
+		if (!running)
 		{
-			handleEvents();
-			if (!running)
-			{
-				return;
-			}
-
-			if (numbers[j] > numbers[j + 1])
-			{
-				std::swap(numbers[j], numbers[j + 1]);
-			}			
+			return;
 		}
 
-		draw();
+		if (numbers[j] > numbers[j + 1])
+		{
+			std::swap(numbers[j], numbers[j + 1]);
+		}			
 	}
-	
-	sorted = true;
+	++i;
 }
 
 void SortVis::Engine::draw()
