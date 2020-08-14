@@ -110,12 +110,7 @@ void SortVis::Engine::stepBubbleSort()
 	static int i = 0;
 	static int size = numbers.size();
 	for (int j = 0; j < size - i - 1; ++j)
-	{			
-		if (!running)
-		{
-			return;
-		}
-
+	{
 		if (numbers[j] > numbers[j + 1])
 		{
 			std::swap(numbers[j], numbers[j + 1]);
