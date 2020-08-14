@@ -141,14 +141,14 @@ void SortVis::Engine::drawColumns()
 {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-	SDL_Rect Column;
+	SDL_Rect column;
 	for (int i = numbers.size(); i > 0; --i)
 	{
-		Column.x = (i-1) * columnWidth;
-		Column.w = columnWidth;
-		Column.h = (numbers[i] * windowSize.Y) / maxValue;
-		Column.y = windowSize.Y - Column.h;
-		SDL_RenderFillRect(renderer, &Column);
+		column.x = (i-1) * columnWidth;
+		column.w = columnWidth;
+		column.h = (numbers[i - 1] * windowSize.Y) / maxValue;
+		column.y = windowSize.Y - column.h;
+		SDL_RenderFillRect(renderer, &column);
 	}
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
