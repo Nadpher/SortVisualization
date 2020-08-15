@@ -39,8 +39,10 @@ namespace SortVis
 		void loadFile(const char* pathToNumbersFile);
 		
 		void handleEvents();
+
 		void draw();
 		void drawColumns();
+		void drawPoints();
 
 		void stepBubbleSort();
 		void stepInsertionSort();
