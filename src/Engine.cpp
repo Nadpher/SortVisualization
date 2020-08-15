@@ -306,6 +306,11 @@ void SortVis::Engine::stepSelectionSort()
 	++i;
 }
 
+void SortVis::Engine::stepCocktailSort()
+{
+
+}
+
 void SortVis::Engine::draw()
 {
 	SDL_RenderClear(renderer);
