@@ -22,7 +22,8 @@ namespace SortVis
 		{
 			selectionSort,
 			insertionSort,
-			bubbleSort
+			bubbleSort,
+			cocktailSort
 		};
 
 		// Random number generation
@@ -77,6 +78,7 @@ namespace SortVis
 		void stepBubbleSort();
 		void stepInsertionSort();
 		void stepSelectionSort();
+		void stepCocktailSort();
 
 		std::vector<int> generateRandom(int maxNumber);		
 	};

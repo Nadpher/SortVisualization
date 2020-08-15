@@ -270,6 +270,10 @@ void SortVis::Engine::step()
 		stepSelectionSort();
 		break;
 
+	case SortAlgorithm::cocktailSort:
+		stepCocktailSort();
+		break;
+
 	default:
 		break;
 	}
@@ -304,6 +308,28 @@ void SortVis::Engine::stepSelectionSort()
 	static int i = 0;
 	std::swap(numbers[i], numbers[std::min_element(numbers.begin() + i, numbers.end()) - numbers.begin()]);
 	++i;
+}
+
+void SortVis::Engine::stepCocktailSort()
+{
+	static int i = 0;
+	static int size = numbers.size();
+	for (int j = 0; j < size - i - 1; ++j)
+	{
+		if (numbers[j] > numbers[j + 1])
+		{
+			std::swap(numbers[j], numbers[j + 1]);
+		}
+	}
+	++i;
+
+	for (int j = size - i - 1; j > i; --j)
+	{
+		if (numbers[j] < numbers[j - 1])
+		{
+			std::swap(numbers[j], numbers[j - 1]);
+		}
+	}
 }
 
 void SortVis::Engine::draw()
