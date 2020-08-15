@@ -98,7 +98,7 @@ void SortVis::Engine::run()
 		handleEvents();
 		if (!std::is_sorted(numbers.begin(), numbers.end()))
 		{
-			stepBubbleSort();
+			stepInsertionSort();
 		}
 		draw();
 	}
@@ -114,6 +114,18 @@ void SortVis::Engine::stepBubbleSort()
 		{
 			std::swap(numbers[j], numbers[j + 1]);
 		}			
+	}
+	++i;
+}
+
+void SortVis::Engine::stepInsertionSort()
+{
+	static int i = 1;
+	int j = i;
+	while (j > 0 && numbers[j - 1] > numbers[j])
+	{
+		std::swap(numbers[j - 1], numbers[j]);
+		j--;
 	}
 	++i;
 }

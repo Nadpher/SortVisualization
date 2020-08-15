@@ -40,9 +40,11 @@ namespace SortVis
 		void loadFile(const char* pathToNumbersFile);
 		
 		void handleEvents();
-		void stepBubbleSort();
 		void draw();
 		void drawColumns();
+
+		void stepBubbleSort();
+		void stepInsertionSort();
 
 		std::vector<int> generateRandom(int maxNumber);		
 	};
