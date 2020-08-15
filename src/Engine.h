@@ -49,12 +49,11 @@ namespace SortVis
 	private:
 
 		const Coord windowSize;
-		SDL_Window* window = nullptr;
-		SDL_Renderer* renderer = nullptr;
-
-		// defaults
 		const SortAlgorithm selectedSortAlgorithm = SortAlgorithm::bubbleSort;
 		const DrawMethod selectedDrawMethod = DrawMethod::line;
+
+		SDL_Window* window = nullptr;
+		SDL_Renderer* renderer = nullptr;
 		
 		std::vector<int> numbers = { };
 		int columnWidth = 0;
