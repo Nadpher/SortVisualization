@@ -32,7 +32,6 @@ namespace SortVis
 		int columnWidth = 0;
 		int maxValue = 0;
 		bool running = true;
-		bool sorted = false;
 
 		void initWindow(Coord windowSize, const char* windowTitle);
 		void initRenderer();
@@ -40,9 +39,11 @@ namespace SortVis
 		void loadFile(const char* pathToNumbersFile);
 		
 		void handleEvents();
-		void stepBubbleSort();
 		void draw();
 		void drawColumns();
+
+		void stepBubbleSort();
+		void stepInsertionSort();
 
 		std::vector<int> generateRandom(int maxNumber);		
 	};
