@@ -12,19 +12,46 @@ namespace SortVis
 	{
 	public:
 
+		enum class DrawMethod
+		{
+			line,
+			point
+		};
+
+		enum class SortAlgorithm
+		{
+			selectionSort,
+			insertionSort,
+			bubbleSort
+		};
+
+		// Random number generation
 		Engine() = delete;
 		Engine(Coord windowSize, int maxNumber);
-		Engine(Coord windowSize, const char* pathToNumbersFile);
-		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle);
+		Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm);
+		Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm, DrawMethod method);
 		Engine(Coord windowSize, int maxNumber, const char* windowTitle);
+		Engine(Coord windowSize, int maxNumber, const char* windowTitle, SortAlgorithm algorithm);
+		Engine(Coord windowSize, int maxNumber, const char* windowTitle, SortAlgorithm algorithm, DrawMethod method);
+
+		// Load from file
+		Engine(Coord windowSize, const char* pathToNumbersFile);
+		Engine(Coord windowSize, const char* pathToNumbersFile, SortAlgorithm algorithm);
+		Engine(Coord windowSize, const char* pathToNumbersFile, SortAlgorithm algorithm, DrawMethod method);
+		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle);
+		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle, SortAlgorithm algorithm);
+		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle, SortAlgorithm algorithm, DrawMethod method);
 
 		~Engine();
 
-		void run();
+		void run();		
 
 	private:
 
 		const Coord windowSize;
+		const SortAlgorithm selectedSortAlgorithm = SortAlgorithm::bubbleSort;
+		const DrawMethod selectedDrawMethod = DrawMethod::line;
+
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
 		
@@ -41,9 +68,12 @@ namespace SortVis
 		void handleEvents();
 
 		void draw();
+		void drawSelection();
+
 		void drawColumns();
 		void drawPoints();
 
+		void step();
 		void stepBubbleSort();
 		void stepInsertionSort();
 		void stepSelectionSort();
