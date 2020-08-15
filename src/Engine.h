@@ -32,7 +32,6 @@ namespace SortVis
 		int columnWidth = 0;
 		int maxValue = 0;
 		bool running = true;
-		bool sorted = false;
 
 		void initWindow(Coord windowSize, const char* windowTitle);
 		void initRenderer();
