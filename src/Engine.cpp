@@ -8,6 +8,8 @@
 #include <numeric>
 #include <string>
 
+// --- CONSTRUCTORS --- (fml)
+
 SortVis::Engine::Engine(Coord windowSize, int maxNumber)
 	: windowSize(windowSize), numbers(generateRandom(maxNumber))
 {
@@ -20,6 +22,35 @@ SortVis::Engine::Engine(Coord windowSize, int maxNumber)
 
 	initWindow(windowSize, "Sort visualizer");
 	initRenderer();	
+}
+
+SortVis::Engine::Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm)
+	: windowSize(windowSize), numbers(generateRandom(maxNumber)), selectedSortAlgorithm(algorithm)
+{
+	calculateNumbers();
+
+	if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
+	{
+		throw std::runtime_error("Could not initialize SDL");
+	}
+
+	initWindow(windowSize, "Sort visualizer");
+	initRenderer();
+}
+
+SortVis::Engine::Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm, DrawMethod method)
+	: windowSize(windowSize), numbers(generateRandom(maxNumber)),
+	selectedSortAlgorithm(algorithm), selectedDrawMethod(method)
+{
+	calculateNumbers();
+
+	if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
+	{
+		throw std::runtime_error("Could not initialize SDL");
+	}
+
+	initWindow(windowSize, "Sort visualizer");
+	initRenderer();
 }
 
 SortVis::Engine::Engine(Coord windowSize, int maxNumber, const char* windowTitle)
@@ -80,6 +111,8 @@ SortVis::Engine::Engine(Coord windowSize, const char* pathToNumbersFile, const c
 	initRenderer();
 }
 
+// --- END OF CONSTRUCTORS ---
+
 SortVis::Engine::~Engine()
 {
 	SDL_DestroyRenderer(renderer);
@@ -139,8 +172,8 @@ void SortVis::Engine::draw()
 {
 	SDL_RenderClear(renderer);
 
-	// drawColumns();
-	drawPoints();
+	drawColumns();
+	// drawPoints();
 
 	SDL_RenderPresent(renderer);
 }
