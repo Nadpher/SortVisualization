@@ -248,9 +248,30 @@ void SortVis::Engine::run()
 		handleEvents();
 		if (!std::is_sorted(numbers.begin(), numbers.end()))
 		{
-			stepSelectionSort();
+			step();
 		}
 		draw();
+	}
+}
+
+void SortVis::Engine::step()
+{
+	switch (selectedSortAlgorithm)
+	{
+	case SortAlgorithm::bubbleSort:
+		stepBubbleSort();
+		break;
+
+	case SortAlgorithm::insertionSort:
+		stepInsertionSort();
+		break;
+
+	case SortAlgorithm::selectionSort:
+		stepSelectionSort();
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -289,10 +310,14 @@ void SortVis::Engine::draw()
 {
 	SDL_RenderClear(renderer);
 
-	drawColumns();
-	// drawPoints();
+	drawSelection();
 
 	SDL_RenderPresent(renderer);
+}
+
+void SortVis::Engine::drawSelection()
+{
+
 }
 
 void SortVis::Engine::drawColumns()

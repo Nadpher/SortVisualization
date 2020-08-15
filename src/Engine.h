@@ -69,9 +69,12 @@ namespace SortVis
 		void handleEvents();
 
 		void draw();
+		void drawSelection();
+
 		void drawColumns();
 		void drawPoints();
 
+		void step();
 		void stepBubbleSort();
 		void stepInsertionSort();
 		void stepSelectionSort();
