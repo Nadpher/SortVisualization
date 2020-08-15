@@ -274,6 +274,10 @@ void SortVis::Engine::step()
 		stepCocktailSort();
 		break;
 
+	case SortAlgorithm::gnomeSort:
+		stepGnomeSort();
+		break;
+
 	default:
 		break;
 	}
@@ -330,6 +334,21 @@ void SortVis::Engine::stepCocktailSort()
 			std::swap(numbers[j], numbers[j - 1]);
 		}
 	}
+}
+
+void SortVis::Engine::stepGnomeSort()
+{
+	static int i = 0;
+
+	if (i == 0 || numbers[i] >= numbers[i - 1])
+	{
+		++i;
+	}
+	else
+	{
+		std::swap(numbers[i], numbers[i - 1]);
+		--i;
+	}	
 }
 
 void SortVis::Engine::draw()

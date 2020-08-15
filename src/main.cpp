@@ -11,8 +11,8 @@ int main()
 		SortVis::Engine visualization(
 			{ 1024, 768 },
 			1024,
-			SortVis::Engine::SortAlgorithm::cocktailSort,
-			SortVis::Engine::DrawMethod::line
+			SortVis::Engine::SortAlgorithm::gnomeSort,
+			SortVis::Engine::DrawMethod::point
 		);
 		visualization.run();
 	}
