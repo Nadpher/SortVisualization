@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COORD_H
+#define COORD_H
 
 namespace SortVis
 {
@@ -8,3 +9,5 @@ namespace SortVis
 		int Y;
 	};
 }
+
+#endif // COORD_H
