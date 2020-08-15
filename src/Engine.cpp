@@ -139,7 +139,8 @@ void SortVis::Engine::draw()
 {
 	SDL_RenderClear(renderer);
 
-	drawColumns();
+	// drawColumns();
+	drawPoints();
 
 	SDL_RenderPresent(renderer);
 }
@@ -158,6 +159,20 @@ void SortVis::Engine::drawColumns()
 		SDL_RenderFillRect(renderer, &column);
 	}
 
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
+void SortVis::Engine::drawPoints()
+{
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+	// SDL_Point point;
+	for (int i = numbers.size(); i > 0; --i)
+	{
+		// point.x = i - 1;
+		// point.y = windowSize.Y - ((numbers[i - 1] * windowSize.Y) / maxValue);
+		SDL_RenderDrawPoint(renderer, i - 1, windowSize.Y - ((numbers[i - 1] * windowSize.Y) / maxValue));
+	}
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
