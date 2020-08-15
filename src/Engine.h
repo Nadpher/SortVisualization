@@ -44,6 +44,7 @@ namespace SortVis
 
 		void stepBubbleSort();
 		void stepInsertionSort();
+		void stepSelectionSort();
 
 		std::vector<int> generateRandom(int maxNumber);		
 	};

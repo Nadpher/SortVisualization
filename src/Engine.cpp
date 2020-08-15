@@ -98,7 +98,7 @@ void SortVis::Engine::run()
 		handleEvents();
 		if (!std::is_sorted(numbers.begin(), numbers.end()))
 		{
-			stepInsertionSort();
+			stepSelectionSort();
 		}
 		draw();
 	}
@@ -125,6 +125,13 @@ void SortVis::Engine::stepInsertionSort()
 	{
 		std::swap(numbers[j - 1], numbers[j]);
 	}
+	++i;
+}
+
+void SortVis::Engine::stepSelectionSort()
+{
+	static int i = 0;
+	std::swap(numbers[i], numbers[std::min_element(numbers.begin() + i, numbers.end()) - numbers.begin()]);
 	++i;
 }
 
