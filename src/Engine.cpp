@@ -317,7 +317,19 @@ void SortVis::Engine::draw()
 
 void SortVis::Engine::drawSelection()
 {
+	switch (selectedDrawMethod)
+	{
+	case DrawMethod::line:
+		drawColumns();
+		break;
 
+	case DrawMethod::point:
+		drawPoints();
+		break;
+
+	default:
+		break;
+	}
 }
 
 void SortVis::Engine::drawColumns()
