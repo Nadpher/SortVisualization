@@ -120,12 +120,10 @@ void SortVis::Engine::stepBubbleSort()
 
 void SortVis::Engine::stepInsertionSort()
 {
-	static int i = 1;
-	int j = i;
-	while (j > 0 && numbers[j - 1] > numbers[j])
+	static int i = 1;	
+	for (int j = i; j > 0 && numbers[j - 1] > numbers[j]; --j)
 	{
 		std::swap(numbers[j - 1], numbers[j]);
-		j--;
 	}
 	++i;
 }
