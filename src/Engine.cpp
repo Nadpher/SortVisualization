@@ -219,16 +219,17 @@ void Engine::handleEvents()
 	}
 }
 
-std::vector<int> Engine::generateRandom(int maxNumber)
+void Engine::generateRandom(int maxNumber)
 {
 	std::mt19937 seed(std::random_device{}());
 	std::vector<int> num(maxNumber);
 	std::iota(num.begin(), num.end(), 0);
 	std::shuffle(num.begin(), num.end(), seed);
 
-	std::cout << "Generated random number sequence.\n";
+	numbers = num;
+	calculateNumbers();
 
-	return num;
+	std::cout << "Generated random number sequence.\n";
 }
 
 void Engine::calculateNumbers()
@@ -239,20 +240,26 @@ void Engine::calculateNumbers()
 
 void Engine::loadFile(const char* pathToNumbersFile)
 {
-	std::ifstream NumbersFile(pathToNumbersFile);
+	numbers.clear();
 
-	std::string Number;
-	while (std::getline(NumbersFile, Number))
+	std::ifstream numbersFile(pathToNumbersFile);
+
+	std::string number;
+	while (std::getline(numbersFile, number))
 	{
-		numbers.push_back(std::stoi(Number));
+		numbers.push_back(std::stoi(number));
 	}
 
-	if (!)
-
+	if (!numbersFile.eof())
+	{
+		throw std::runtime_error("Error while reading numbers file.");
+	}
 	if (numbers.empty())
 	{
 		throw std::runtime_error("Numbers file is empty.");
 	}
+
+	calculateNumbers();
 
 	std::cout << "Loaded numbers file.\n";
 }
