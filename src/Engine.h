@@ -27,35 +27,30 @@ namespace SortVis
 			gnomeSort
 		};
 
-		// Random number generation
 		Engine() = delete;
-		Engine(Coord windowSize, int maxNumber);
-		Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm);
-		Engine(Coord windowSize, int maxNumber, SortAlgorithm algorithm, DrawMethod method);
-		Engine(Coord windowSize, int maxNumber, const char* windowTitle);
-		Engine(Coord windowSize, int maxNumber, const char* windowTitle, SortAlgorithm algorithm);
-		Engine(Coord windowSize, int maxNumber, const char* windowTitle, SortAlgorithm algorithm, DrawMethod method);
 
-		// Load from file
-		Engine(Coord windowSize, const char* pathToNumbersFile);
-		Engine(Coord windowSize, const char* pathToNumbersFile, SortAlgorithm algorithm);
-		Engine(Coord windowSize, const char* pathToNumbersFile, SortAlgorithm algorithm, DrawMethod method);
-		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle);
-		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle, SortAlgorithm algorithm);
-		Engine(Coord windowSize, const char* pathToNumbersFile, const char* windowTitle, SortAlgorithm algorithm, DrawMethod method);
+		// Random number generation
+		Engine(Coord windowSize,
+			const char* windowTitle = "Sort visualization"
+		);
 
 		~Engine();
 
-		void run();		
+		void run();
+		inline void setDrawMethod(DrawMethod drawMethod)	      { selectedDrawMethod = drawMethod;       }
+		inline void setSortAlgorithm(SortAlgorithm sortAlgorithm) { selectedSortAlgorithm = sortAlgorithm; }
+
+		void generateRandom(int maxNumber);		
+		void loadFile(const char* pathToNumbersFile);
 
 	private:
 
 		const Coord windowSize;
-		const SortAlgorithm selectedSortAlgorithm = SortAlgorithm::bubbleSort;
-		const DrawMethod selectedDrawMethod = DrawMethod::line;
-
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
+
+		SortAlgorithm selectedSortAlgorithm;
+		DrawMethod selectedDrawMethod;
 		
 		std::vector<int> numbers = { };
 		int columnWidth = 0;
@@ -64,14 +59,12 @@ namespace SortVis
 
 		void initWindow(Coord windowSize, const char* windowTitle);
 		void initRenderer();
-		void calculateNumbers();		
-		void loadFile(const char* pathToNumbersFile);
+		void calculateNumbers();
 		
 		void handleEvents();
 
 		void draw();
 		void drawSelection();
-
 		void drawColumns();
 		void drawPoints();
 
@@ -81,8 +74,6 @@ namespace SortVis
 		void stepSelectionSort();
 		void stepCocktailSort();
 		void stepGnomeSort();
-
-		std::vector<int> generateRandom(int maxNumber);		
 	};
 }
 

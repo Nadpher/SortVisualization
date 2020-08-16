@@ -6,14 +6,10 @@ int main()
 	try
 	{
 		// If the max number is higher than the window width it draws nothing other than a black screen :^)
-		// Default draw method is line
-		// Default sorting algorithm is bubble sort
-		SortVis::Engine visualization(
-			{ 1024, 768 },
-			1024,
-			SortVis::Engine::SortAlgorithm::gnomeSort,
-			SortVis::Engine::DrawMethod::point
-		);
+		SortVis::Engine visualization({ 1024, 768 });
+		visualization.setDrawMethod(SortVis::Engine::DrawMethod::line);
+		visualization.setSortAlgorithm(SortVis::Engine::SortAlgorithm::bubbleSort);
+
 		visualization.run();
 	}
 	catch (std::runtime_error& error)
