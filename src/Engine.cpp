@@ -36,6 +36,11 @@ void Engine::run()
 	// Sets render draw color to black
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
+	if (numbers.empty())
+	{
+		throw std::runtime_error("Vector is empty. Make sure to call either loadFile() or generateRandom()");
+	}
+
 	while (running)
 	{
 		handleEvents();

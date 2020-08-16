@@ -49,8 +49,8 @@ namespace SortVis
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
 
-		SortAlgorithm selectedSortAlgorithm;
-		DrawMethod selectedDrawMethod;
+		SortAlgorithm selectedSortAlgorithm = SortAlgorithm::bubbleSort;
+		DrawMethod selectedDrawMethod = DrawMethod::line;
 		
 		std::vector<int> numbers = { };
 		int columnWidth = 0;
